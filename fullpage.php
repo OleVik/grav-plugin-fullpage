@@ -74,8 +74,8 @@ class FullPagePlugin extends Plugin
     public function pageIteration()
     {
         $page = $this->grav['page'];
-        if ($page->template() == 'fullpage') {
-            $config = $this->config();
+        $config = $this->config();
+        if ($config['enabled'] && $page->template() == 'fullpage') {
             if (isset($page->header()->fullpage['options'])) {
                 $config['options'] = array_merge($config['options'], $page->header()->fullpage['options']);
             }
