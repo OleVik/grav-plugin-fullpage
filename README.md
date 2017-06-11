@@ -92,7 +92,7 @@ You can of course also style the plugin using your theme's /css/custom.css-file,
 
 ### Injecting Twig
 
-Using the `inject_footer`-setting you can append a Twig-template to each section. For example, `inject_footer: "partials/inject.html.twig"` will render the theme's `partials/inject.html.twig`-template and append it to the sections. If the element was constructed like this: `<div class="inject">Injected</div>`, you could style it like this:
+Using the `inject_footer`-setting you can append a Twig-template to each section globally, or a specific page's section. For example, `inject_footer: "partials/inject.html.twig"` will render the theme's `partials/inject.html.twig`-template and append it to the section(s). If the element was constructed like this: `<div class="inject">Injected</div>`, you could style it like this:
 
 ```css
 .fullpage .inject {

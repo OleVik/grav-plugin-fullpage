@@ -8,8 +8,8 @@ author:
 homepage: https://olevik.me/plugins/fullpage/
 demo: https://olevik.me/plugins/fullpage/book/
 keywords: fullscreen, slides, fullscreen.js
-bugs: https://github.com/ole-vik/grav-plugin-fullpage/issues
-docs: https://github.com/ole-vik/grav-plugin-fullpage/blob/develop/README.md
+bugs: https://github.com/OleVik/grav-plugin-fullpage/issues
+docs: https://github.com/OleVik/grav-plugin-fullpage/blob/develop/README.md
 license: MIT
 
 form:
