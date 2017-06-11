@@ -41,10 +41,6 @@ class Utilities
         $pages = $pages->published()->order($this->config['order']['by'], $this->config['order']['dir']);
         $paths = array();
         foreach ($pages as $page) {
-            if (isset($page->header()->inject_footer)) {
-                $paths[$route]['inject_footer'] = $page->header()->inject_footer;
-                $paths[$route]['inject_footer'] = Grav::instance()['twig']->processTemplate($paths[$route]['inject_footer']);
-            }
             $route = $page->rawRoute();
             $paths[$route]['depth'] = $depth;
             $paths[$route]['title'] = $page->title();
@@ -54,6 +50,15 @@ class Utilities
             );
             $paths[$route]['route'] = $route;
             $paths[$route]['slug'] = $page->slug();
+            if (isset($this->config['inject_footer'])) {
+                $paths[$route]['inject_footer'] = $this->config['inject_footer'];
+            }
+            if (isset($page->header()->inject_footer)) {
+                $paths[$route]['inject_footer'] = $page->header()->inject_footer;
+            }
+            if (isset($paths[$route]['inject_footer'])) {
+                $paths[$route]['inject_footer'] = Grav::instance()['twig']->processTemplate($paths[$route]['inject_footer']);
+            }
             if (isset($page->header()->horizontal)) {
                 $paths[$route]['horizontal'] = $page->header()->horizontal;
             }
