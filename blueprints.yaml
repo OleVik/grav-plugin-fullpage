@@ -1,0 +1,27 @@
+name: FullPage
+version: 0.9.0
+description: Fullscreen navigational slideshows through fullPage.js
+icon: arrows-alt
+author:
+  name: Ole Vik
+  email: git@olevik.net
+homepage: https://olevik.me/plugins/fullpage/
+demo: https://olevik.me/plugins/fullpage/book/
+keywords: fullscreen, slides, fullscreen.js
+bugs: https://github.com/ole-vik/grav-plugin-fullpage/issues
+docs: https://github.com/ole-vik/grav-plugin-fullpage/blob/develop/README.md
+license: MIT
+
+form:
+  validation: strict
+  fields:
+    enabled:
+      type: toggle
+      label: Plugin status
+      highlight: 1
+      default: 0
+      options:
+        1: Enabled
+        0: Disabled
+      validate:
+        type: bool
