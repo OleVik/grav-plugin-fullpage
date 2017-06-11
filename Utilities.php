@@ -41,6 +41,10 @@ class Utilities
         $pages = $pages->published()->order($this->config['order']['by'], $this->config['order']['dir']);
         $paths = array();
         foreach ($pages as $page) {
+            if (isset($page->header()->inject_footer)) {
+                $paths[$route]['inject_footer'] = $page->header()->inject_footer;
+                $paths[$route]['inject_footer'] = Grav::instance()['twig']->processTemplate($paths[$route]['inject_footer']);
+            }
             $route = $page->rawRoute();
             $paths[$route]['depth'] = $depth;
             $paths[$route]['title'] = $page->title();
@@ -58,7 +62,7 @@ class Utilities
             } elseif (isset($this->config['styles'])) {
                 $paths[$route]['styles'] = $this->config['styles'];
             }
-            $paths[$route]['content'] = $page->rawMarkdown();
+            $paths[$route]['content'] = $page->content();
             if (!empty($paths[$route])) {
                 $children = $this->buildTree($route, $mode, $depth);
                 if (!empty($children)) {
@@ -110,6 +114,9 @@ class Utilities
                     echo '<div data-name="' . $title . '" data-anchor="' . $id . '" class="' . $type . '">';
                 }
                 echo $break;
+                if (isset($page['inject_footer'])) {
+                    echo $page['inject_footer'];
+                }
                 echo '</div>';
                 if (isset($page['styles']) && count($page['styles']) == $styleIndex+1) {
                     $styleIndex = 0;

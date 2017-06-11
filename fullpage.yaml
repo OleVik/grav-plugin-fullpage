@@ -2,16 +2,18 @@ enabled: true
 order:
   by: folder
   dir: asc
+theme_css: true
 builtin_css: true
 builtin_js: true
+color_function: "50"
+change_titles: true
+inject_footer: ""
 styles:
   - background: "#93c0d3"
   - background: "#6f977d"
   - background: "#598495"
   - background: "#5e6168"
   - background: "#213533"
-color_function: "50"
-change_titles: true
 options:
   menu: '#menu'
   lockAnchors: false

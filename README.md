@@ -82,7 +82,35 @@ fullpage:
 
 Styles are defined as `property: value` and processed by the plugin. If the amount of pages exceed the amount of styles, they will be reused in the order they are defined. If the `background`-property is defined, but `color` is not, the plugin tries to estimate a suitable text-color to apply. The equations available to estimate this color is either `50` or `YIQ`, set by `color_function`.
 
-You can of course also style the plugin using your theme's CSS-files, by targeting the `.fullpage`-selector which wraps around all of the plugin's content.
+You can of course also style the plugin using your theme's /css/custom.css-file, by targeting the `.fullpage`-selector which wraps around all of the plugin's content. This behavior can be enabled or disabled with the `theme_css`-setting. All pages have a `data-anchor`-attribute set on their sections, which can be utilized by CSS like this:
+
+```css
+.fullpage [data-anchor="constructing-pages"] {
+  background: red;
+}
+```
+
+### Injecting Twig
+
+Using the `inject_footer`-setting you can append a Twig-template to each section. For example, `inject_footer: "partials/inject.html.twig"` will render the theme's `partials/inject.html.twig`-template and append it to the sections. If the element was constructed like this: `<div class="inject">Injected</div>`, you could style it like this:
+
+```css
+.fullpage .inject {
+  display: block;
+  position: absolute;
+  bottom: 2em;
+}
+```
+
+You can also arbitrarily execute Twig within a page's Markdown by enabling it in the FrontMatter with:
+
+```yaml
+twig_first: true
+process:
+  twig: true
+```
+
+For example, `<p>{{ site.author.name }}</p>` will render the name of the author defined in site.yaml.
 
 ### Creating a menu
 

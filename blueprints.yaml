@@ -1,5 +1,5 @@
 name: FullPage
-version: 0.9.0
+version: 0.9.1
 description: Fullscreen navigational slideshows through fullPage.js
 icon: arrows-alt
 author:
@@ -25,3 +25,87 @@ form:
         0: Disabled
       validate:
         type: bool
+    order.by:
+      type: select
+      size: medium
+      classes: fancy
+      label: Order Type
+      options:
+        default: Default - based on folder name
+        folder: Folder - based on prefix-less folder name
+        title: Title - based on title field in header
+        date: Date - based on date field in header
+    order.dir:
+      type: toggle
+      label: Order Direction
+      highlight: asc
+      default: desc
+      options:
+        asc: Ascending
+        desc: Descending
+    theme_css:
+      type: toggle
+      label: Use Theme's CSS
+      description: Import current theme's /css/custom.css into fullpage.html.twig's assets
+      highlight: 1
+      default: 1
+      options:
+        1: PLUGIN_ADMIN.ENABLED
+        0: PLUGIN_ADMIN.DISABLED
+      validate:
+        type: bool
+    builtin_css:
+      type: toggle
+      label: Use Plugin's CSS
+      highlight: 1
+      default: 1
+      options:
+        1: PLUGIN_ADMIN.ENABLED
+        0: PLUGIN_ADMIN.DISABLED
+      validate:
+        type: bool
+    builtin_js:
+      type: toggle
+      label: Use Plugin's JS
+      highlight: 1
+      default: 1
+      options:
+        1: PLUGIN_ADMIN.ENABLED
+        0: PLUGIN_ADMIN.DISABLED
+      validate:
+        type: bool
+    color_function:
+      type: toggle
+      label: Color function
+      description: Default color function to apply
+      highlight: 1
+      default: "50"
+      options:
+        50: "50%"
+        YIQ: "YIQ"
+    change_titles:
+      type: toggle
+      label: Dynamic titles
+      description: Update document titles on navigation
+      highlight: 1
+      default: 0
+      options:
+        1: Enabled
+        0: Disabled
+      validate:
+        type: bool
+    inject_footer:
+      type: text
+      label: Inject Twig
+      description: Render a Twig-template and append it to each section
+      highlight: 1
+    styles:
+      type: section
+      title: Default Styles
+      text: "Array of CSS selectors:values. WORK IN PROGRESS"
+      underline: true
+    options:
+      type: section
+      title: Library options
+      text: Options to pass to fullPage.js. WORK IN PROGRESS
+      underline: true

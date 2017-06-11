@@ -107,7 +107,10 @@ class FullPagePlugin extends Plugin
             }
             if ($config['builtin_css']) {
                 $this->grav['assets']->addCss('plugin://fullpage/css/jquery.fullpage.min.css', 105);
-                $this->grav['assets']->addCss('plugin://fullpage/css/default.css');
+                $this->grav['assets']->addCss('plugin://fullpage/css/default.css', 104);
+            }
+            if ($config['theme_css']) {
+                $this->grav['assets']->addCss('theme://css/custom.css', 103);
             }
         }
     }
