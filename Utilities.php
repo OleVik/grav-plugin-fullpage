@@ -56,7 +56,7 @@ class Utilities
             if (isset($page->header()->inject_footer)) {
                 $paths[$route]['inject_footer'] = $page->header()->inject_footer;
             }
-            if (isset($paths[$route]['inject_footer'])) {
+            if (!empty($paths[$route]['inject_footer'])) {
                 $paths[$route]['inject_footer'] = Grav::instance()['twig']->processTemplate($paths[$route]['inject_footer']);
             }
             if (isset($page->header()->horizontal)) {
