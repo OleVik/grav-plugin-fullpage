@@ -97,7 +97,7 @@ form:
     inject_footer:
       type: text
       label: Inject Twig
-      description: Render a Twig-template and append it to each section
+      description: Render a theme's Twig-template and append it to each section, eg. 'partials/inject.html.twig'
       highlight: 1
     styles:
       type: section

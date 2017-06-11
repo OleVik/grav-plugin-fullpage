@@ -11,16 +11,16 @@
   {% endblock meta %}
   <link rel="icon" type="image/png" href="{{ url('theme://images/favicon.png') }}" />
   <link rel="canonical" href="{{ page.url(true, true) }}" />
-  {{ assets.css() }}
+  {{ assets.css()|raw }}
 </head>
 {% endblock head %}
 
 <body id="top" class="{{ page.header.body_classes }}">
   {% block content %}
   <div id="fullpage" class="fullpage">
-    {{ page.content }}
+    {{ page.content|raw }}
   </div>
   {% endblock content %}
-  {{ assets.js() }}
+  {{ assets.js()|raw }}
 </body>
 </html>
