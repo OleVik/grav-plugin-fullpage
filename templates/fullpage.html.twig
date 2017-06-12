@@ -1,26 +1,26 @@
 {% set theme_config = attribute(config.themes, config.system.pages.theme) %}
 <!DOCTYPE html>
 <html lang="{{ grav.language.getLanguage ?: 'en' }}">
-{% block head %}
-<head>
-  {% block meta %}
-  <meta charset="utf-8" />
-  <title>{% if header.title %}{{ header.title|e('html') }} | {% endif %}{{ site.title|e('html') }}</title>
-  {% include 'partials/metadata.html.twig' %}
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  {% endblock meta %}
-  <link rel="icon" type="image/png" href="{{ url('theme://images/favicon.png') }}" />
-  <link rel="canonical" href="{{ page.url(true, true) }}" />
-  {{ assets.css()|raw }}
-</head>
-{% endblock head %}
+  {% block head %}
+  <head>
+    {% block meta %}
+    <meta charset="utf-8" />
+    <title>{% if header.title %}{{ header.title|e('html') }} | {% endif %}{{ site.title|e('html') }}</title>
+    {% include 'partials/metadata.html.twig' %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    {% endblock meta %}
+    <link rel="icon" type="image/png" href="{{ url('theme://images/favicon.png') }}" />
+    <link rel="canonical" href="{{ page.url(true, true) }}" />
+    {{ assets.css()|raw }}
+  </head>
+  {% endblock head %}
 
-<body id="top" class="{{ page.header.body_classes }}">
-  {% block content %}
-  <div id="fullpage" class="fullpage">
-    {{ page.content|raw }}
-  </div>
-  {% endblock content %}
-  {{ assets.js()|raw }}
-</body>
+  <body id="top" class="{{ page.header.body_classes }}">
+    {% block content %}
+    <div id="fullpage" class="fullpage">
+      {{ page.content|raw }}
+    </div>
+    {% endblock content %}
+    {{ assets.js()|raw }}
+  </body>
 </html>
