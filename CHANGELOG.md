@@ -1,3 +1,10 @@
+# v0.9.3
+## 13-06-2017
+
+1. [](#improved)
+    * Blueprints with limited defaults
+    * Fullpage.yaml with limited defaults
+
 # v0.9.2
 ## 12-06-2017
 
