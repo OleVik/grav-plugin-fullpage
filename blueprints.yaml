@@ -1,5 +1,5 @@
 name: FullPage
-version: 0.9.1
+version: 0.9.2
 description: Fullscreen navigational slideshows through fullPage.js
 icon: arrows-alt
 author:
@@ -21,8 +21,8 @@ form:
       highlight: 1
       default: 0
       options:
-        1: Enabled
-        0: Disabled
+        1: PLUGIN_ADMIN.ENABLED
+        0: PLUGIN_ADMIN.DISABLED
       validate:
         type: bool
     order.by:
@@ -90,8 +90,8 @@ form:
       highlight: 1
       default: 0
       options:
-        1: Enabled
-        0: Disabled
+        1: PLUGIN_ADMIN.ENABLED
+        0: PLUGIN_ADMIN.DISABLED
       validate:
         type: bool
     inject_footer:
@@ -99,6 +99,17 @@ form:
       label: Inject Twig
       description: Render a theme's Twig-template and append it to each section, eg. 'partials/inject.html.twig'
       highlight: 1
+    shortcodes:
+      type: toggle
+      label: Enable shortcodes
+      description: Enables internal shortcode-processing
+      highlight: 1
+      default: 0
+      options:
+        1: PLUGIN_ADMIN.ENABLED
+        0: PLUGIN_ADMIN.DISABLED
+      validate:
+        type: bool
     styles:
       type: section
       title: Default Styles

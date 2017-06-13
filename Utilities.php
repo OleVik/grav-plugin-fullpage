@@ -67,7 +67,8 @@ class Utilities
             } elseif (isset($this->config['styles'])) {
                 $paths[$route]['styles'] = $this->config['styles'];
             }
-            $paths[$route]['content'] = $page->content();
+            $paths[$route]['content'] = $page->rawMarkdown();
+
             if (!empty($paths[$route])) {
                 $children = $this->buildTree($route, $mode, $depth);
                 if (!empty($children)) {
@@ -96,9 +97,15 @@ class Utilities
             $title = $page['title'];
             $content = $page['content'];
             $content = $parsedown->text($content);
-            $breaks = explode("<hr />", $content);
             $index = 0;
             $styleIndex = 0;
+            $styles = array();
+
+            if (isset($page['styles']) && isset($page['styles'][$styleIndex])) {
+                $styles = $page['styles'][$styleIndex];
+            }
+            $breaks = explode("<hr />", $content);
+
             if (isset($page['horizontal'])) {
                 $type = 'slide';
                 echo '<div data-name="' . $title . '" data-anchor="' . $page['slug'] . '" class="section">';
@@ -111,12 +118,20 @@ class Utilities
                 } else {
                     $id = $index;
                 }
-                if (isset($page['styles'])) {
-                    if (isset($page['styles'][$styleIndex])) {
-                        echo '<div data-name="' . $title . '" data-anchor="' . $id . '" class="' . $type . '" style="' . $this->applyStyles($page['styles'][$styleIndex]) . '">';
-                    }
+                if ($this->config['shortcodes']) {
+                    $shortcodes = $this->interpretShortcodes($break);
+                    $break = $shortcodes['content'];
+                    $shortcodeStyles = $shortcodes['styles'];
+                    // $styles = array_merge($styles, $shortcodeStyles);
+                }
+                if (!empty($shortcodeStyles)) {
+                    echo '<div data-name="' . $title . '" data-anchor="' . $id . '" class="' . $type . '" style="' . $this->applyStyles($shortcodeStyles) . '">';
                 } else {
-                    echo '<div data-name="' . $title . '" data-anchor="' . $id . '" class="' . $type . '">';
+                    if (isset($page['styles']) && isset($page['styles'][$styleIndex])) {
+                        echo '<div data-name="' . $title . '" data-anchor="' . $id . '" class="' . $type . '" style="' . $this->applyStyles($styles) . '">';
+                    } else {
+                        echo '<div data-name="' . $title . '" data-anchor="' . $id . '" class="' . $type . '">';
+                    }
                 }
                 echo $break;
                 if (isset($page['inject_footer'])) {
@@ -140,6 +155,20 @@ class Utilities
             }
         }
         return $return;
+    }
+
+    public function interpretShortcodes($content)
+    {
+        $styles = array();
+        $re = '~((?:\[\s*(?<name>[a-zA-Z0-9-_]+)\s*(?:\=\s*(?<bbCode>\"(?:[^\"\\\\]*(?:\\\\.[^\"\\\\]*)*)\"|((?:(?!=\s*|\]|\/\])[^\s])+)))?\s*(?<parameters>(?:\s*(?:\w+(?:\s*\=\s*\"(?:[^\"\\\\]*(?:\\\\.[^\"\\\\]*)*)\"|\s*\=\s*((?:(?!=\s*|\]|\/\])[^\s])+)|(?=\s|\]|\/\s*\]|$))))*)\s*(?:\](?<content>.*?)\[\s*(?<markerContent>\/)\s*(\k<name>)\s*\]|\]|(?<marker>\/)\s*\])))~u';
+        preg_match_all($re, $content, $matches, PREG_SET_ORDER, 0);
+        if (!empty($matches)) {
+            foreach ($matches as $match) {
+                $styles[$match['name']] = $match['bbCode'];
+                $content = str_replace($match[0], '', $content);
+            }
+        }
+        return ['content' => $content, 'styles' => $styles];
     }
 
     /**
@@ -167,6 +196,9 @@ class Utilities
      */
     public function applyStyles($styles)
     {
+        if (empty($styles)) {
+            return null;
+        }
         $return = '';
         foreach ($styles as $key => $value) {
             /* If background is defined, and color is not, try to find a suitable contrast */

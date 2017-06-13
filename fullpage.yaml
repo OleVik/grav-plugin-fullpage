@@ -8,6 +8,7 @@ builtin_js: true
 color_function: "50"
 change_titles: true
 inject_footer: ""
+shortcodes: true
 styles:
   - background: "#93c0d3"
   - background: "#6f977d"
