@@ -67,7 +67,7 @@ class Utilities
             } elseif (isset($this->config['styles'])) {
                 $paths[$route]['styles'] = $this->config['styles'];
             }
-            $paths[$route]['content'] = $page->rawMarkdown();
+            $paths[$route]['content'] = $page->content();
 
             if (!empty($paths[$route])) {
                 $children = $this->buildTree($route, $mode, $depth);

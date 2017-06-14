@@ -1,5 +1,5 @@
 name: FullPage
-version: 0.9.3
+version: 0.9.4
 description: Fullscreen navigational slideshows through fullPage.js
 icon: arrows-alt
 author:
@@ -18,8 +18,6 @@ form:
     enabled:
       type: toggle
       label: Plugin status
-      highlight: 1
-      default: 0
       options:
         1: PLUGIN_ADMIN.ENABLED
         0: PLUGIN_ADMIN.DISABLED
@@ -38,17 +36,13 @@ form:
     order.dir:
       type: toggle
       label: Order Direction
-      highlight: asc
-      default: desc
       options:
         asc: Ascending
         desc: Descending
     theme_css:
       type: toggle
       label: Use Theme's CSS
-      description: Import current theme's /css/custom.css into fullpage.html.twig's assets
-      highlight: 1
-      default: 1
+      description: "Import current theme's /css/custom.css into fullpage.html.twig's assets"
       options:
         1: PLUGIN_ADMIN.ENABLED
         0: PLUGIN_ADMIN.DISABLED
@@ -57,8 +51,6 @@ form:
     builtin_css:
       type: toggle
       label: Use Plugin's CSS
-      highlight: 1
-      default: 1
       options:
         1: PLUGIN_ADMIN.ENABLED
         0: PLUGIN_ADMIN.DISABLED
@@ -67,8 +59,6 @@ form:
     builtin_js:
       type: toggle
       label: Use Plugin's JS
-      highlight: 1
-      default: 1
       options:
         1: PLUGIN_ADMIN.ENABLED
         0: PLUGIN_ADMIN.DISABLED
@@ -78,8 +68,6 @@ form:
       type: toggle
       label: Color function
       description: Default color function to apply
-      highlight: 1
-      default: 50
       options:
         50: "50%"
         YIQ: "YIQ"
@@ -87,8 +75,6 @@ form:
       type: toggle
       label: Dynamic titles
       description: Update document titles on navigation
-      highlight: 1
-      default: 0
       options:
         1: PLUGIN_ADMIN.ENABLED
         0: PLUGIN_ADMIN.DISABLED
@@ -97,14 +83,20 @@ form:
     inject_footer:
       type: text
       label: Inject Twig
-      description: Render a theme's Twig-template and append it to each section, eg. 'partials/inject.html.twig'
-      highlight: 1
+      description: "Render a theme's Twig-template and append it to each section, eg. 'partials/inject.html.twig'"
     shortcodes:
       type: toggle
-      label: Enable shortcodes
+      label: Shortcodes
       description: Enables internal shortcode-processing
-      highlight: 1
-      default: 0
+      options:
+        1: PLUGIN_ADMIN.ENABLED
+        0: PLUGIN_ADMIN.DISABLED
+      validate:
+        type: bool
+    transition:
+      type: toggle
+      label: OnLoad Transition
+      description: Fade in from white when DOM-structure is ready
       options:
         1: PLUGIN_ADMIN.ENABLED
         0: PLUGIN_ADMIN.DISABLED
@@ -231,7 +223,7 @@ form:
           fields:
             options.keyboardScrolling:
               type: toggle
-              label: Navigate with keyboard
+              label: Navigate with Keyboard
               options:
                 1: PLUGIN_ADMIN.ENABLED
                 0: PLUGIN_ADMIN.DISABLED
@@ -239,7 +231,7 @@ form:
                 type: bool
             options.animateAnchor:
               type: toggle
-              label: Auto-navigate
+              label: Auto-Navigate
               options:
                 1: PLUGIN_ADMIN.ENABLED
                 0: PLUGIN_ADMIN.DISABLED
@@ -247,7 +239,7 @@ form:
                 type: bool
             options.recordHistory:
               type: toggle
-              label: Record browser-history
+              label: Record Browser-History
               options:
                 1: PLUGIN_ADMIN.ENABLED
                 0: PLUGIN_ADMIN.DISABLED
@@ -285,7 +277,7 @@ form:
               label: Selector for Slides
             options.lazyLoading:
               type: toggle
-              label: Lady-load media
+              label: Ladyload Media
               options:
                 1: PLUGIN_ADMIN.ENABLED
                 0: PLUGIN_ADMIN.DISABLED
