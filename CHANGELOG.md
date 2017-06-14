@@ -1,3 +1,11 @@
+# v0.9.5
+## xx-06-2017
+
+1. [](#new)
+    * Add settings for heading font and block-text font
+2. [](#improved)
+    * Blueprints, CSS, and README
+
 # v0.9.4
 ## 14-06-2017
 

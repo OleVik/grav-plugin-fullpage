@@ -1,5 +1,5 @@
 name: FullPage
-version: 0.9.4
+version: 0.9.5
 description: Fullscreen navigational slideshows through fullPage.js
 icon: arrows-alt
 author:
@@ -67,14 +67,22 @@ form:
     color_function:
       type: toggle
       label: Color function
-      description: Default color function to apply
+      description: Default color function to apply.
       options:
         50: "50%"
         YIQ: "YIQ"
+    header_font:
+      type: text
+      label: Heading Font-Family
+      description: CSS Font-Family to use for headings.
+    block_font:
+      type: text
+      label: Block Font-Family
+      description: CSS Font-Family to use for block-text.
     change_titles:
       type: toggle
       label: Dynamic titles
-      description: Update document titles on navigation
+      description: Update document titles on navigation.
       options:
         1: PLUGIN_ADMIN.ENABLED
         0: PLUGIN_ADMIN.DISABLED
@@ -83,11 +91,11 @@ form:
     inject_footer:
       type: text
       label: Inject Twig
-      description: "Render a theme's Twig-template and append it to each section, eg. 'partials/inject.html.twig'"
+      description: "Render a theme's Twig-template and append it to each section, eg. 'partials/inject.html.twig'."
     shortcodes:
       type: toggle
       label: Shortcodes
-      description: Enables internal shortcode-processing
+      description: Enables internal shortcode-processing.
       options:
         1: PLUGIN_ADMIN.ENABLED
         0: PLUGIN_ADMIN.DISABLED
@@ -96,7 +104,7 @@ form:
     transition:
       type: toggle
       label: OnLoad Transition
-      description: Fade in from white when DOM-structure is ready
+      description: Fade in from white when DOM-structure is ready.
       options:
         1: PLUGIN_ADMIN.ENABLED
         0: PLUGIN_ADMIN.DISABLED

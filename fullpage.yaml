@@ -6,6 +6,8 @@ theme_css: true
 builtin_css: true
 builtin_js: true
 color_function: "50"
+header_font: "'Helvetica Neue', Helvetica, Arial, sans-serif"
+block_font: "Palatino, 'Palatino Linotype', 'Palatino LT STD', 'Book Antiqua', Georgia, serif"
 change_titles: true
 inject_footer: ""
 shortcodes: true

@@ -122,7 +122,6 @@ class Utilities
                     $shortcodes = $this->interpretShortcodes($break);
                     $break = $shortcodes['content'];
                     $shortcodeStyles = $shortcodes['styles'];
-                    // $styles = array_merge($styles, $shortcodeStyles);
                 }
                 if (!empty($shortcodeStyles)) {
                     echo '<div data-name="' . $title . '" data-anchor="' . $id . '" class="' . $type . '" style="' . $this->applyStyles($shortcodeStyles) . '">';

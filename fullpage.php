@@ -126,6 +126,32 @@ class FullPagePlugin extends Plugin
             if ($config['theme_css']) {
                 $this->grav['assets']->addCss('theme://css/custom.css', 103);
             }
+            if (!empty($config['header_font'])) {
+                $header_font = $config['header_font'];
+                $this->grav['assets']->addInlineCss("
+                    #fullpage h1,
+                    #fullpage h2,
+                    #fullpage h3,
+                    #fullpage h4,
+                    #fullpage h5,
+                    #fullpage h6 {
+                        font-family: $header_font;
+                    }
+                ");
+            }
+            if (!empty($config['block_font'])) {
+                $block_font = $config['block_font'];
+                $this->grav['assets']->addInlineCss("
+                    #fullpage,
+                    #fullpage p,
+                    #fullpage ul,
+                    #fullpage ol,
+                    #fullpage blockquote,
+                    #fullpage figcaption {
+                        font-family: $block_font;
+                    }
+                ");
+            }
         }
     }
 
