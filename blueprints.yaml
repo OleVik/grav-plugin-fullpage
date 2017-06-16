@@ -117,7 +117,7 @@ form:
     styles:
       type: section
       title: Default Styles
-      text: "Array of CSS properties and values. WORK IN PROGRESS, needs custom implementation of array field-type."
+      text: "Array of CSS properties and values. INCOMPLETE: Will use multilevel-field.
       underline: true
     options:
       type: section
