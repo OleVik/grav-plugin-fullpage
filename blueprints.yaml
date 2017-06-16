@@ -117,7 +117,7 @@ form:
     styles:
       type: section
       title: Default Styles
-      text: "Array of CSS properties and values. INCOMPLETE: Will use multilevel-field.
+      text: "Array of CSS properties and values. INCOMPLETE: Will use multilevel-field."
       underline: true
     options:
       type: section
