@@ -1,17 +1,12 @@
-# v0.9.6
-## 16-06-2017
-
-1. [](#improved)
-    * Optimize CSS
-    * Merge config with page, clean up Utilities
-    * Clean up Utilities
-
 # v0.9.5
-## 14-06-2017
+## 16-06-2017
 
 1. [](#new)
     * Add settings for heading font and block-text font
 2. [](#improved)
+    * Optimize CSS
+    * Merge config with page, clean up Utilities
+    * Clean up Utilities
     * Blueprints, CSS, and README
 
 # v0.9.4
