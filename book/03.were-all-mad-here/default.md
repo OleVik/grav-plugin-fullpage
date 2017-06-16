@@ -53,4 +53,4 @@ Alice said,
 
 ---
 
-![Cheshire Cat fading to smile](https://vignette4.wikia.nocookie.net/disney/images/8/8f/Alice333.jpg/revision/latest?cb=20100527005643 "Cheshire Cat fading to smile")
+![Cheshire Cat fading to smile](https://vignette4.wikia.nocookie.net/disney/images/8/8f/Alice333.jpg/revision/latest/scale-to-width-down/1280?cb=20100527005643 "Cheshire Cat fading to smile")

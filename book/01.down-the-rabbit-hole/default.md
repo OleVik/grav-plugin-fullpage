@@ -27,7 +27,7 @@ The Rabbit actually *took a watch out of its waistcoat-pocket* , and looked at i
 
 <a name="img22"></a>
 
-![White Rabbit checking watch](https://vignette1.wikia.nocookie.net/disney/images/c/c9/Tumblr_mvvwp4QVau1qhcrb0o1_1280.jpg/revision/latest?cb=20131108181614 "White Rabbit checking watch")
+![White Rabbit checking watch](https://vignette1.wikia.nocookie.net/disney/images/c/c9/Tumblr_mvvwp4QVau1qhcrb0o1_1280.jpg/revision/latest/scale-to-width-down/1280?cb=20131108181614 "White Rabbit checking watch")
 
 ---
 

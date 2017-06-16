@@ -76,7 +76,7 @@ Alice looked all round the table, but there was nothing on it but tea. ‘I don�
 
 ---
 
-![Mad Tea Party](https://vignette4.wikia.nocookie.net/disney/images/c/c0/Tea-party-in-wonderland.jpg/revision/latest?cb=20140907031444 "Mad Tea Party")
+![A Mad Tea Party](https://vignette4.wikia.nocookie.net/disney/images/c/c0/Tea-party-in-wonderland.jpg/revision/latest/scale-to-width-down/1280?cb=20140907031444 "A Mad Tea Party")
 
 ---
 
@@ -96,4 +96,4 @@ The Dormouse shook its head impatiently, and said, without opening its eyes, ‘
 
 ---
 
-![Tea Party Sings](https://vignette1.wikia.nocookie.net/disney/images/c/c4/Tumblr_n1daqlThFS1qhcrb0o1_1280.jpg/revision/latest?cb=20140222021641 "Tea Party Sings")
+![Tea Party Sings](https://vignette1.wikia.nocookie.net/disney/images/c/c4/Tumblr_n1daqlThFS1qhcrb0o1_1280.jpg/revision/latest/scale-to-width-down/1280?cb=20140222021641 "Tea Party Sings")

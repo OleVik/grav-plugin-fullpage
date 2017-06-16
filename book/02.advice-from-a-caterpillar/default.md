@@ -25,7 +25,7 @@ The Caterpillar and Alice looked at each other for some time in silence: at last
 
 ---
 
-![Alice meets the Caterpillar](https://vignette2.wikia.nocookie.net/disney/images/9/92/C1.jpg/revision/latest?cb=20111005053742 "Alice meets the Caterpillar")
+![Alice meets the Caterpillar](https://vignette2.wikia.nocookie.net/disney/images/9/92/C1.jpg/revision/latest/scale-to-width-down/1280?cb=20111005053742 "Alice meets the Caterpillar")
 
 ---
 
