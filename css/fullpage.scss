@@ -63,9 +63,60 @@ body {
   }
   .fp-controlArrow.fp-prev,
   .fp-controlArrow.fp-next {
+    width: 3.5em;
+    height: 3.5em;
+    border-width: 0;
+    border-color: transparent;
     @include media("<=md") {
       display: none;
     }
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 2.5em;
+      height: 0.5em;
+      border-radius: 0.25em;
+      background-color: black;
+      -webkit-transition: all 0.15s ease, background-color 0.4s ease;
+      transition: all 0.15s ease, background-color 0.4s ease;
+      -webkit-transform-origin: 0.2em 50%;
+      -ms-transform-origin: 0.2em 50%;
+      transform-origin: 0.2em 50%;
+    }
+    &:before {
+      -webkit-transform: translateX(0.5em) translateY(1.55em) rotate(45deg);
+      -ms-transform: translateX(0.5em) translateY(1.55em) rotate(45deg);
+      transform: translateX(0.5em) translateY(1.55em) rotate(45deg);
+    }
+    &:after {
+      -webkit-transform: translateX(0.5em) translateY(1.55em) rotate(-45deg);
+      -ms-transform: translateX(0.5em) translateY(1.55em) rotate(-45deg);
+      transform: translateX(0.5em) translateY(1.55em) rotate(-45deg);
+    }
+    &:hover:before,
+    &:hover:after,
+    &:active:before,
+    &:active:after,
+    &:focus:before,
+    &:focus:after {
+      background-color: white;
+    }
+  }
+  .fp-controlArrow.fp-prev {
+    top: initial;
+    right: 4.5em;
+    bottom: 3.5em;
+    left: initial;
+  }
+  .fp-controlArrow.fp-next {
+    top: initial;
+    right: 1em;
+    bottom: 3.5em;
+    left: initial;
+    transform: rotate(180deg);
   }
 
   #{$a-tags}{color: inherit;text-decoration: none;border-bottom: 1px dashed black;}
@@ -79,33 +130,26 @@ body {
   h1 {
     font-size: ms(6);
     line-height: 1.2;
-    letter-spacing: -.1rem;
-    margin-bottom: 0.25rem;
   }
   h2 {
     font-size: ms(5);
-    line-height: 1.25;
-    letter-spacing: -.1rem;
+    line-height: 1.2;
   }
   h3 {
     font-size: ms(4);
     line-height: 1.3;
-    letter-spacing: -.1rem;
   }
   h4 {
     font-size: ms(3);
     line-height: 1.35;
-    letter-spacing: -.08rem;
   }
   h5 {
     font-size: ms(2);
     line-height: 1.5;
-    letter-spacing: -.05rem;
   }
   h6 {
     font-size: ms(1);
     line-height: 1.6;
-    letter-spacing: 0;
   }
   img {
     width: auto;
@@ -134,8 +178,8 @@ body {
       padding-right: 2em;
     }
     @include media("<sm") {
-      padding-left: 1em;
-      padding-right: 1em;
+      padding-left: 1.5em;
+      padding-right: 1.5em;
     }
   }
   pre {
@@ -180,6 +224,7 @@ body {
   }
 }
 #fp-nav {
-  top: 75%;
-  bottom: 0;
+  @include media("<=md") {
+    display: none;
+  }
 }
