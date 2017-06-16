@@ -110,7 +110,7 @@ If the shortcode is found and applied, it is stripped from the further evaluated
 Using the `inject_footer`-setting you can append a Twig-template to each section globally, or a specific page's section. For example, `inject_footer: "partials/inject.html.twig"` will render the theme's `partials/inject.html.twig`-template and append it to the section(s). If the element was constructed like this: `<div class="inject">Injected</div>`, you could style it like this:
 
 ```css
-.fullpage .inject {
+#fullpage .inject {
   display: block;
   position: absolute;
   bottom: 2em;

@@ -76,9 +76,6 @@ class FullPagePlugin extends Plugin
         $page = $this->grav['page'];
         $config = $this->config();
         if ($config['enabled'] && $page->template() == 'fullpage') {
-            if (isset($page->header()->fullpage['options'])) {
-                $config['options'] = array_merge($config['options'], $page->header()->fullpage['options']);
-            }
             $utility = new Utilities($config);
             $tree = $utility->buildTree($page->route());
             $slides = $utility->buildContent($tree);

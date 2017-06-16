@@ -34,11 +34,19 @@ class Utilities
         $page = Grav::instance()['page'];
         $depth++;
         $mode = '@page.self';
+
+        $config = $this->config;
+        if (isset($page->header()->fullpage)) {
+            $config = array_merge($config, $page->header()->fullpage);
+        }
         if ($depth > 1) {
             $mode = '@page.children';
         }
         $pages = $page->evaluate([$mode => $route]);
-        $pages = $pages->published()->order($this->config['order']['by'], $this->config['order']['dir']);
+        $pages = $pages->published()->order(
+            $config['order']['by'],
+            $config['order']['dir']
+        );
         $paths = array();
         foreach ($pages as $page) {
             $route = $page->rawRoute();
@@ -50,8 +58,9 @@ class Utilities
             );
             $paths[$route]['route'] = $route;
             $paths[$route]['slug'] = $page->slug();
-            if (isset($this->config['inject_footer'])) {
-                $paths[$route]['inject_footer'] = $this->config['inject_footer'];
+            $paths[$route]['header'] = $page->header();
+            if (isset($config['inject_footer'])) {
+                $paths[$route]['inject_footer'] = $config['inject_footer'];
             }
             if (isset($page->header()->inject_footer)) {
                 $paths[$route]['inject_footer'] = $page->header()->inject_footer;
@@ -64,8 +73,8 @@ class Utilities
             }
             if (isset($page->header()->styles)) {
                 $paths[$route]['styles'] = $page->header()->styles;
-            } elseif (isset($this->config['styles'])) {
-                $paths[$route]['styles'] = $this->config['styles'];
+            } elseif (isset($config['styles'])) {
+                $paths[$route]['styles'] = $config['styles'];
             }
             $paths[$route]['content'] = $page->content();
 
@@ -95,20 +104,25 @@ class Utilities
         foreach ($pages as $route => $page) {
             ob_start();
             $title = $page['title'];
+            $slug = $page['slug'];
             $content = $page['content'];
             $content = $parsedown->text($content);
             $index = 0;
             $styleIndex = 0;
             $styles = array();
-
-            if (isset($page['styles']) && isset($page['styles'][$styleIndex])) {
-                $styles = $page['styles'][$styleIndex];
+            $config = $this->config;
+            if (isset($page['header']->fullpage)) {
+                $config = array_merge($config, $page['header']->fullpage);
             }
             $breaks = explode("<hr />", $content);
 
             if (isset($page['horizontal'])) {
                 $type = 'slide';
-                echo '<div data-name="' . $title . '" data-anchor="' . $page['slug'] . '" class="section">';
+                echo "<div 
+                data-name='$title' 
+                data-anchor='$slug' 
+                class='section'
+                >";
             } else {
                 $type = 'section';
             }
@@ -118,25 +132,41 @@ class Utilities
                 } else {
                     $id = $index;
                 }
-                if ($this->config['shortcodes']) {
+                if ($config['shortcodes']) {
                     $shortcodes = $this->interpretShortcodes($break);
                     $break = $shortcodes['content'];
                     $shortcodeStyles = $shortcodes['styles'];
                 }
                 if (!empty($shortcodeStyles)) {
-                    echo '<div data-name="' . $title . '" data-anchor="' . $id . '" class="' . $type . '" style="' . $this->applyStyles($shortcodeStyles) . '">';
+                    $shortcodeStyles = $this->applyStyles($page['styles'][$styleIndex]);
+                    echo "<div 
+                    data-name='$title' 
+                    data-anchor='$id' 
+                    class='$type' 
+                    style='$shortcodeStyles'
+                    >";
                 } else {
                     if (isset($page['styles']) && isset($page['styles'][$styleIndex])) {
-                        echo '<div data-name="' . $title . '" data-anchor="' . $id . '" class="' . $type . '" style="' . $this->applyStyles($styles) . '">';
+                        $styles = $this->applyStyles($page['styles'][$styleIndex]);
+                        echo "<div 
+                        data-name='$title' 
+                        data-anchor='$id' 
+                        class='$type' 
+                        style='$styles'
+                        >";
                     } else {
-                        echo '<div data-name="' . $title . '" data-anchor="' . $id . '" class="' . $type . '">';
+                        echo "<div 
+                        data-name='$title' 
+                        data-anchor='$id' 
+                        class='$type'
+                        >";
                     }
                 }
                 echo $break;
                 if (isset($page['inject_footer'])) {
                     echo $page['inject_footer'];
                 }
-                echo '</div>';
+                echo "</div>";
                 if (isset($page['styles']) && count($page['styles']) == $styleIndex+1) {
                     $styleIndex = 0;
                 } else {
@@ -145,7 +175,7 @@ class Utilities
                 $index++;
             }
             if (isset($page['horizontal'])) {
-                echo '</div>';
+                echo "</div>";
             }
             $return .= ob_get_contents();
             ob_end_clean();
@@ -190,7 +220,8 @@ class Utilities
     }
 
     /**
-     * Format styles for critical-path inlining
+     * Format styles for inlining
+     * @param array $styles Array of quote-enclosed properties and values
      * @return string CSS-styles
      */
     public function applyStyles($styles)
@@ -201,7 +232,7 @@ class Utilities
         $return = '';
         foreach ($styles as $key => $value) {
             /* If background is defined, and color is not, try to find a suitable contrast */
-            if (!array_key_exists('color', $styles) && array_key_exists('background', $styles)) {
+            if (array_key_exists('background', $styles) && !array_key_exists('color', $styles)) {
                 if (isset($config['color_function'])) {
                     if ($config['color_function'] == '50') {
                         $color = $this->getContrast50($styles['background']);

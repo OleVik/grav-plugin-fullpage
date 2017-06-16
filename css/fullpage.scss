@@ -60,6 +60,7 @@ body {
   .section .slide p {
     font-size: ms(1);
     line-height: 1.4;
+    text-align: justify;
   }
   .fp-controlArrow.fp-prev,
   .fp-controlArrow.fp-next {
@@ -164,48 +165,52 @@ body {
   p,
   ul,
   ol,
-  pre,
-  figure {
+  pre {
+    font-size: ms(1);
     padding-left: 7em;
     padding-right: 7em;
-    @include media(">=md") {
-      font-size: ms(1);
+    @include media(">=xl") {
+      padding-left: 12em;
+      padding-right: 12em;
+    }
+    @include media("<xl", ">=lg") {
+      padding-left: 7em;
+      padding-right: 7em;
+    }
+    @include media("<lg", ">=md") {
       padding-left: 5em;
       padding-right: 5em;
     }
     @include media("<md") {
+      padding-left: 2.5em;
+      padding-right: 2.5em;
+    }
+    @include media("<sm") {
       padding-left: 2em;
       padding-right: 2em;
     }
-    @include media("<sm") {
-      padding-left: 1.5em;
-      padding-right: 1.5em;
+  }
+  figure {
+    margin: 0;
+    padding: 0;
+    figcaption {
+      margin: 0.5em auto;
+      text-align: center;
     }
   }
   pre {
     padding-top: 0.5em;
     padding-bottom: 0.5em;
-    @include media("<md") {
-      padding-left: 2em;
-      padding-right: 2em;
-    }
-    @include media("<sm") {
-      padding-left: 0;
-      padding-right: 0;
-    }
     code {
       width: 100%;
       font-family: $courier-font-stack;
       font-size: 12px;
-      word-wrap: break-word;
-      &.hljs {
-        display: table-caption;
-      }
     }
   }
   code {
     color: #880000;
     background: #F0F0F0;
+    word-wrap: break-word;
   }
   .backgroundVideo {
     position: absolute;

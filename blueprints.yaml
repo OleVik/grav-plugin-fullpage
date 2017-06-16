@@ -1,5 +1,6 @@
 name: FullPage
-version: 0.9.5
+version: 0.9.6
+testing: true
 description: Fullscreen navigational slideshows through fullPage.js
 icon: arrows-alt
 author:
@@ -11,6 +12,9 @@ keywords: fullscreen, slides, fullscreen.js
 bugs: https://github.com/OleVik/grav-plugin-fullpage/issues
 docs: https://github.com/OleVik/grav-plugin-fullpage/blob/develop/README.md
 license: MIT
+dependencies:
+  - { name: grav, version: '>=1.3' }
+  - { name: admin, version: '>=1.5' }
 
 form:
   validation: strict
