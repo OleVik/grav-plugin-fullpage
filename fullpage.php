@@ -85,6 +85,7 @@ class FullPagePlugin extends Plugin
             $this->grav['twig']->twig_vars['fullpage_menu'] = $menu;
             if ($config['transition']) {
                 $this->grav['twig']->twig_vars['fullpage_transition'] = true;
+                $this->grav['assets']->addCss('plugin://fullpage/css/transition.css', ['loading' => 'inline', 'group' => 'critical']);
             }
 
             if ($config['builtin_js']) {

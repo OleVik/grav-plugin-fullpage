@@ -13,11 +13,11 @@ inject_footer: ""
 shortcodes: true
 transition: true
 styles:
-  - background: "#93c0d3"
-  - background: "#6f977d"
-  - background: "#598495"
-  - background: "#5e6168"
-  - background: "#213533"
+  - background: "#0B110D"
+  - background: "#2C4D56"
+  - background: "#C3AA72"
+  - background: "#DC7612"
+  - background: "#BD3200"
 options:
   navigation: false
   navigationPosition: 'right'

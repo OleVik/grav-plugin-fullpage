@@ -11,30 +11,22 @@
     {% endblock meta %}
     <link rel="icon" type="image/png" href="{{ url('theme://images/favicon.png') }}" />
     <link rel="canonical" href="{{ page.url(true, true) }}" />
-    {% if fullpage_transition %}
-    <style type="text/css">
-    #page_transition {
-      position: fixed;
-      background: white;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 1;
-      visibility: visible;
-      transition: opacity .5s, visibility .5s;
-      overflow: hidden;
-      z-index: 1000;
-    }
-    </style>
-    {% endif %}
+    {{ assets.css('critical')|raw }}
     {{ assets.css()|raw }}
   </head>
   {% endblock head %}
 
   <body id="top" class="{{ page.header.body_classes }}">
     {% if fullpage_transition %}
-    <div id="page_transition"></div>
+    <div id="page_transition">
+      <div class="la-line-scale la-dark la-3x">
+        <div style="color: #0B110D;"></div>
+        <div style="color: #2C4D56;"></div>
+        <div style="color: #C3AA72;"></div>
+        <div style="color: #DC7612;"></div>
+        <div style="color: #BD3200;"></div>
+      </div>
+    </div>
     {% endif %}
     {% block content %}
     <div id="fullpage" class="fullpage">

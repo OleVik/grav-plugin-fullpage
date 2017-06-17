@@ -4,7 +4,7 @@ The **Fullpage** Plugin is for [Grav CMS](http://github.com/getgrav/grav). The [
 
 At its core the plugin facilitates efficient handling of content for use with the library. You can utilize fullPage.js however you want through custom initialization, and still leverage the plugin's content-handling.
 
-A [demo is available](https://olevik.me/plugins/fullpage/book/), as are docs presented [by the plugin](https://olevik.me/plugins/fullpage/). The [demo-content](https://github.com/OleVik/grav-plugin-fullpage/tree/demo-content)-branch holds copies of the pages used in these two examples.
+A [demo is available](https://olevik.me/plugins/fullpage/book/), as are docs presented [by the plugin](https://olevik.me/plugins/fullpage/). The [demo-content](https://github.com/OleVik/grav-plugin-fullpage/tree/demo-content)-branch holds copies of the pages used in these two examples. If you want to get started quickly, @PaulHibbitts has a ready-to-go [skeleton](https://github.com/paulhibbitts/fullpage-site).
 
 ## Installation
 
