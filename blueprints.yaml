@@ -1,5 +1,5 @@
 name: FullPage
-version: 0.9.6
+version: 1.0.0
 testing: true
 description: Fullscreen navigational slideshows through fullPage.js
 icon: arrows-alt
