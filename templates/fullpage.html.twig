@@ -4,20 +4,32 @@
   {% block head %}
   <head>
     {% block meta %}
-    <meta charset="utf-8" />
-    <title>{% if header.title %}{{ header.title|e('html') }} | {% endif %}{{ site.title|e('html') }}</title>
-    {% include 'partials/metadata.html.twig' %}
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+      <meta charset="utf-8" />
+      <title>{% if header.title %}{{ header.title|e('html') }} | {% endif %}{{ site.title|e('html') }}</title>
+      {% include 'partials/metadata.html.twig' %}
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     {% endblock meta %}
     <link rel="icon" type="image/png" href="{{ url('theme://images/favicon.png') }}" />
     <link rel="canonical" href="{{ page.url(true, true) }}" />
+    {% block stylesheets %}
+      {% if config.plugins['fullpage'].transition %}
+        {% do assets.addCss('plugin://fullpage/css/transition.css', {'group': 'critical'}) %}
+      {% endif %}
+      {% if config.plugins['fullpage'].builtin_css %}
+        {% do assets.addCss('plugin://fullpage/css/jquery.fullpage.min.css') %}
+        {% do assets.addCss('plugin://fullpage/css/fullpage.css') %}
+      {% endif %}
+      {% if config.plugins['fullpage'].theme_css %}
+        {% do assets.addCss('theme://css/custom.css') %}
+      {% endif %}
+    {% endblock %}
     {{ assets.css('critical')|raw }}
     {{ assets.css()|raw }}
   </head>
   {% endblock head %}
 
   <body id="top" class="{{ page.header.body_classes }}">
-    {% if fullpage_transition %}
+    {% if config.plugins['fullpage'].transition %}
     <div id="page_transition">
       <div class="la-line-scale la-dark la-3x">
         <div style="color: #0B110D;"></div>
@@ -29,10 +41,23 @@
     </div>
     {% endif %}
     {% block content %}
-    <div id="fullpage" class="fullpage">
+    <div id="fullpage">
       {{ page.content|raw }}
     </div>
     {% endblock content %}
+    {% block scripts %}
+      {% if config.plugins['fullpage'].builtin_js %}
+        {% do assets.addJs('system://assets/jquery/jquery-3.x.min.js') %}
+        {% do assets.addJs('plugin://fullpage/js/jquery.fullpage.min.js') %}
+      {% endif %}
+    {% endblock %}
     {{ assets.js()|raw }}
+    {% block init_fullpage %}
+      {% if config.plugins['fullpage'].builtin_js %}
+        <script type="text/javascript">
+          {{ fullpage_init }}
+        </script>
+      {% endif %}
+    {% endblock %}
   </body>
 </html>

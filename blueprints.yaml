@@ -119,6 +119,13 @@ form:
       title: Default Styles
       text: "Array of CSS properties and values. INCOMPLETE: Will use multilevel-field."
       underline: true
+      fields:
+        styles:
+          type: multilevel
+          label: Styles
+          style: vertical
+          validate:
+            type: array
     options:
       type: section
       title: Library options

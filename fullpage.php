@@ -83,47 +83,33 @@ class FullPagePlugin extends Plugin
             $menu = $utility->buildMenu($tree);
             $menu = $utility->flattenArray($menu, 1);
             $this->grav['twig']->twig_vars['fullpage_menu'] = $menu;
-            if ($config['transition']) {
-                $this->grav['twig']->twig_vars['fullpage_transition'] = true;
-                $this->grav['assets']->addCss('plugin://fullpage/css/transition.css', ['loading' => 'inline', 'group' => 'critical']);
-            }
 
-            if ($config['builtin_js']) {
-                $this->grav['assets']->addJs('jquery', 110);
-                $this->grav['assets']->addJs('plugin://fullpage/js/jquery.fullpage.min.js', 105);
-                $options = json_encode($config['options'], JSON_PRETTY_PRINT);
-                if ($config['transition']) {
-                    $transition = ",
-                    afterRender: function() {
-                        $('#page_transition').css({
-                            'opacity': '0', 
-                            'visibility': 'hidden'
-                        });
-                    }
-                    ";
-                    $options = $utility->stringInsert($options, $transition, strlen($options)-1);
-                }
-                if ($config['change_titles']) {
-                    $changeTitles = ",
-                    afterLoad: function(anchorLink, index) {
-                        document.title = $(this).data('name');
-                    }
-                    ";
-                    $options = $utility->stringInsert($options, $changeTitles, strlen($options)-1);
-                }
-                $this->grav['assets']->addInlineJs("
-                    $(document).ready(function() {
-                        $('#fullpage').fullpage($options);
+            $options = json_encode($config['options'], JSON_PRETTY_PRINT);
+            $init = '$(document).ready(function() {';
+            $init .= '$("#fullpage").fullpage(';
+            if ($config['transition']) {
+                $transition = ",
+                afterRender: function() {
+                    $('#page_transition').css({
+                        'opacity': '0', 
+                        'visibility': 'hidden'
                     });
-                ");
+                }
+                ";
+                $options = $utility->stringInsert($options, $transition, strlen($options)-1);
             }
-            if ($config['builtin_css']) {
-                $this->grav['assets']->addCss('plugin://fullpage/css/jquery.fullpage.min.css', 105);
-                $this->grav['assets']->addCss('plugin://fullpage/css/fullpage.css', 104);
+            if ($config['change_titles']) {
+                $changeTitles = ",
+                afterLoad: function(anchorLink, index) {
+                    document.title = $(this).data('name');
+                }
+                ";
+                $options = $utility->stringInsert($options, $changeTitles, strlen($options)-1);
             }
-            if ($config['theme_css']) {
-                $this->grav['assets']->addCss('theme://css/custom.css', 103);
-            }
+            $init .= $options;
+            $init .= ');';
+            $init .= '});';
+            $this->grav['twig']->twig_vars['fullpage_init'] = $init;
             if (!empty($config['header_font'])) {
                 $header_font = $config['header_font'];
                 $this->grav['assets']->addInlineCss("

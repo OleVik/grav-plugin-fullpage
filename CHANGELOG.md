@@ -1,3 +1,9 @@
+# v1.1.0-beta.1
+## 11-02-2018
+
+1. [](#improved)
+    * Move asset logic to template
+
 # v1.0.0
 ## 28-01-2018
 
