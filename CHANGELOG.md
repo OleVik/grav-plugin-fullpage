@@ -1,3 +1,13 @@
+# v1.2.0
+## 03-06-2018
+
+1. [](#new)
+    * Bumped FullPage.js-version to 2.9.7
+2. [](#improved)
+    * Inline documentation
+3. [](#bugfix)
+    * Prevent caching to fix #2
+
 # v1.1.0-beta.1
 ## 11-02-2018
 

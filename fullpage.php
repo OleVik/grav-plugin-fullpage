@@ -8,27 +8,31 @@ use Grav\Common\Page\Media;
 use Grav\Common\Page\Collection;
 use RocketTheme\Toolbox\Event\Event;
 
-require('Utilities.php');
+require 'Utilities.php';
 use Fullpage\Utilities;
 
 /**
  * Creates slides using fullPage.js
  *
  * Class FullPageJsPlugin
+ * 
  * @package Grav\Plugin
- * @return void
+ * @return  void
  * @license MIT License by Ole Vik
  */
 class FullPagePlugin extends Plugin
 {
+
     /**
-     * [$options description]
+     * Grav cache setting
+     *
      * @var [type]
      */
-    protected $options;
+    protected $cache;
 
     /**
      * Register intial event
+     * 
      * @return array
      */
     public static function getSubscribedEvents()
@@ -40,6 +44,7 @@ class FullPagePlugin extends Plugin
 
     /**
      * Declare config from plugin-config
+     * 
      * @return array Plugin configuration
      */
     public function config()
@@ -55,20 +60,27 @@ class FullPagePlugin extends Plugin
 
     /**
      * Initialize the plugin and events
+     *
+     * @param Event $event RocketTheme events
+     * 
+     * @return void
      */
     public function onPluginsInitialized(Event $event)
     {
         if ($this->isAdmin()) {
             return;
         }
+        $this->grav['config']->set('system.cache.enabled', false);
         $this->enable([
             'onPageContentProcessed' => ['pageIteration', 0],
-            'onTwigTemplatePaths' => ['templates', 0]
+            'onTwigTemplatePaths' => ['templates', 0],
+            'onShutdown' => ['onShutdown', 0]
         ]);
     }
 
     /**
      * Construct the page
+     * 
      * @return void
      */
     public function pageIteration()
@@ -141,10 +153,21 @@ class FullPagePlugin extends Plugin
 
     /**
      * Add templates-directory to Twig paths
+     * 
      * @return void
      */
     public function templates()
     {
         $this->grav['twig']->twig_paths[] = __DIR__ . '/templates';
+    }
+
+    /**
+     * Reset cache on shutdown
+     * 
+     * @return void
+     */
+    public function onShutdown()
+    {
+        $this->grav['config']->set('system.cache.enabled', $this->cache);
     }
 }

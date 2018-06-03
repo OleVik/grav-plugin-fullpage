@@ -6,16 +6,26 @@ use Grav\Common\Plugin;
 use Grav\Common\Page\Page;
 use Grav\Common\Page\Collection;
 
+/**
+ * Fullpage-plugin Utilities
+ */
 class Utilities
 {
     /**
      * Plugin configuration
+     * 
      * @var array
      */
     protected $config;
 
     /**
      * Instantiate Fullpage Utilities
+     */
+
+    /**
+     * Instantiate Fullpage Utilities
+     *
+     * @param array $config Plugin configuration
      */
     public function __construct($config)
     {
@@ -24,9 +34,11 @@ class Utilities
 
     /**
      * Creates page-structure recursively
-     * @param string $route Route to page
-     * @param string $mode Reserved collection-mode for handling child-pages
+     * 
+     * @param string  $route Route to page
+     * @param string  $mode  Reserved collection-mode for handling child-pages
      * @param integer $depth Reserved placeholder for recursion depth
+     * 
      * @return array Page-structure with children
      */
     public function buildTree($route, $mode = false, $depth = 0)
@@ -94,7 +106,9 @@ class Utilities
 
     /**
      * Create HTML to use with fullPage.js
+     * 
      * @param array $pages Page-structure with children
+     * 
      * @return string HTML-structure
      */
     public function buildContent($pages)
@@ -202,7 +216,9 @@ class Utilities
 
     /**
      * Generate menu with anchors and titles from pages
+     * 
      * @param array $tree Page-structure with children
+     * 
      * @return array Slide-anchors with titles
      */
     public function buildMenu($tree)
@@ -221,7 +237,9 @@ class Utilities
 
     /**
      * Format styles for inlining
+     * 
      * @param array $styles Array of quote-enclosed properties and values
+     * 
      * @return string CSS-styles
      */
     public function applyStyles($styles)
@@ -251,8 +269,11 @@ class Utilities
 
     /**
      * Find contrasting color from 50%-equation
+     * 
      * @param string $hexcolor Hexadecimal color-value
+     * 
      * @return string black|white
+     * 
      * @see https://24ways.org/2010/calculating-color-contrast
      */
     public function getContrast50($hexcolor)
@@ -262,8 +283,11 @@ class Utilities
 
     /**
      * Find contrasting color from YIQ-equation
+     * 
      * @param string $hexcolor Hexadecimal color-value
+     * 
      * @return string black|white
+     * 
      * @see https://24ways.org/2010/calculating-color-contrast
      */
     public function getContrastYIQ($hexcolor)
@@ -277,10 +301,13 @@ class Utilities
 
     /**
      * Flatten a multidimensional array to one dimension, optionally preserving keys
-     * @param array $array Array to flatten
+     * 
+     * @param array   $array        Array to flatten
      * @param integer $preserveKeys 0 (default) to not preserve keys, 1 to preserve string keys only, 2 to preserve all keys
-     * @param array &$out Internal parameter for recursion
+     * @param array   $out          Internal parameter for recursion
+     * 
      * @return array Flattened array
+     * 
      * @see https://stackoverflow.com/a/7256477/603387
      */
     public function flattenArray($array, $preserveKeys = 0, &$out = array())
@@ -299,10 +326,13 @@ class Utilities
 
     /**
      * Insert string within string
-     * @param string $str Original string
+     * 
+     * @param string $str    Original string
      * @param string $insert String to insert
-     * @param int $index Position to insert to
+     * @param int    $index  Position to insert to
+     * 
      * @return string Original string with new string inserted
+     * 
      * @see https://stackoverflow.com/a/30820401/603387
      */
     public function stringInsert($str, $insert, $index)
