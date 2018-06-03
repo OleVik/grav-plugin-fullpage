@@ -12,11 +12,12 @@ change_titles: true
 inject_footer: ""
 shortcodes: true
 transition: true
-styles:
-  test:
-    - background: "#0B110D"
-      color: red
-    - background: "#2C4D56"
+styles: 
+  - background: "#0B110D" 
+  - background: "#2C4D56" 
+  - background: "#C3AA72" 
+  - background: "#DC7612" 
+  - background: "#BD3200" 
 options:
   navigation: false
   navigationPosition: 'right'

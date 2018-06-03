@@ -6,7 +6,7 @@
 2. [](#improved)
     * Inline documentation
 3. [](#bugfix)
-    * Prevent caching to fix #2
+    * Prevent caching Fullpage-template to fix #2
 
 # v1.1.0-beta.1
 ## 11-02-2018
