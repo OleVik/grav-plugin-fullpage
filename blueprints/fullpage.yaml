@@ -1,0 +1,4 @@
+title: Fullpage
+extends@:
+  type: default
+  context: blueprints://pages

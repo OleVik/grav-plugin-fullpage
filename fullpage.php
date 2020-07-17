@@ -68,14 +68,19 @@ class FullPagePlugin extends Plugin
     public function onPluginsInitialized(Event $event)
     {
         if ($this->isAdmin()) {
-            return;
+            $this->enable(
+                [
+                    'onGetPageTemplates' => ['onGetPageTemplates', 0]
+                ]
+            );
+        } else {
+            $this->grav['config']->set('system.cache.enabled', false);
+            $this->enable([
+                'onPageContentProcessed' => ['pageIteration', 0],
+                'onTwigTemplatePaths' => ['templates', 0],
+                'onShutdown' => ['onShutdown', 0]
+            ]);
         }
-        $this->grav['config']->set('system.cache.enabled', false);
-        $this->enable([
-            'onPageContentProcessed' => ['pageIteration', 0],
-            'onTwigTemplatePaths' => ['templates', 0],
-            'onShutdown' => ['onShutdown', 0]
-        ]);
     }
 
     /**
@@ -149,6 +154,25 @@ class FullPagePlugin extends Plugin
                 ");
             }
         }
+    }
+
+    /**
+     * Register templates and blueprints
+     *
+     * @param RocketTheme\Toolbox\Event\Event $event Event handler
+     * 
+     * @return void
+     */
+    public function onGetPageTemplates(Event $event)
+    {
+        $types = $event->types;
+        $res = $this->grav['locator'];
+        $types->scanBlueprints(
+            $res->findResource('plugin://' . $this->name . '/blueprints')
+        );
+        $types->scanTemplates(
+            $res->findResource('plugin://' . $this->name . '/templates')
+        );
     }
 
     /**
